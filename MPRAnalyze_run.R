@@ -27,14 +27,20 @@ obj <- MpraObject(
 
 
 #compare two groups
-obj <- analyzeComparative(
-	obj = obj,  
-	rnaDesign = ~ batch,
-	reducedDesign = ~ 1,
-	correctControls = F, 
-	mode="scale"
-)
+obj <- analyzeQuantification(obj = obj,
+                              dnaDesign = ~ 1 ,
+                              rnaDesign = ~ 1)
 
-obj.res <- testLrt(obj)
+alpha <- getAlpha(obj)
+res.epi <- testEmpirical(obj = obj,
+                         twoSided=TRUE
+                         )
+
+res.epi<-res.epi %>%
+mutate(as.data.frame(rownames(res.epi))) %>%
+rename(label = "rownames(res.epi)") %>%
+separate(label, c("rsid", "type","allele"), remove = T, sep ="_")
+
 saveRDS(obj, "./results/EoE_TE7_vs_control_obj.RDS")
-write.csv(obj.res, "./results/EoE_TE7_vs_control_comparison_scale.csv")
+write.table(res.epi,"./results/EoE_TE7_vs_control_quantification.csv",sep="\t")
+#write.csv(obj.res, "./results/EoE_TE7_vs_control_comparison_scale.csv")

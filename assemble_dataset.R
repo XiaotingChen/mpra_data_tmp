@@ -2,11 +2,11 @@ library(tidyverse)
 library(data.table)
 
 #dna barcode level data
-dna_A <- fread("./data/barcode_level_data/SE_subsampled/EoE_repA_analysis_w_tag.txt")
-dna_B <- fread("./data/barcode_level_data/SE_subsampled/EoE_repB_analysis_w_tag.txt")
-dna_C <- fread("./data/barcode_level_data/SE_subsampled/EoE_repC_analysis_w_tag.txt")
-dna_D <- fread("./data/barcode_level_data/SE_subsampled/EoE_repD_analysis_w_tag.txt")
-dna_E <- fread("./data/barcode_level_data/SE_subsampled/EoE_repE_analysis_w_tag.txt")
+dna_A <- fread("./data/barcode_level_data/EoE_PE_SE_analysis_w_tag.txt")
+dna_B <- fread("./data/barcode_level_data/EoE_PE_SE_analysis_w_tag.txt")
+dna_C <- fread("./data/barcode_level_data/EoE_PE_SE_analysis_w_tag.txt")
+dna_D <- fread("./data/barcode_level_data/EoE_PE_SE_analysis_w_tag.txt")
+dna_E <- fread("./data/barcode_level_data/EoE_PE_SE_analysis_w_tag.txt")
 
 
 #rna barcode level data TE7
