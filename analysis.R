@@ -41,44 +41,43 @@ left_join(dna_eoe_clean[, c("reference_id_barcode", "new_barcode")], "reference_
 arrange_fun <- function(x, y) {
   colnames(x) <- c("sample", "reference_id", "barcode" )
   wider_format <- x %>% pivot_wider(names_from = barcode, values_from = sample)
-  colnames(wider_format) <- paste(colnames(wider_format), y,sep = "_")
+  colnames(wider_format) <- paste(colnames(wider_format), y, sep = "_")
   return(wider_format)
 } #give sample, reference_id and barcode
 
 
 #dna_arrange
-dna_sampleA <- arrange_fun(dna_eoe_clean[,c(1,6,10)], "TE7_A") %>% replace(., is.na(.), 0) 
-dna_sampleB <- arrange_fun(dna_eoe_clean[,c(2,6,10)], "TE7_B") %>% replace(., is.na(.), 0) 
-dna_sampleC <- arrange_fun(dna_eoe_clean[,c(3,6,10)], "TE7_C") %>% replace(., is.na(.), 0) 
-dna_sampleD <- arrange_fun(dna_eoe_clean[,c(4,6,10)], "TE7_D") %>% replace(., is.na(.), 0) 
-dna_sampleE <- arrange_fun(dna_eoe_clean[,c(5,6,10)], "TE7_E") %>% replace(., is.na(.), 0) 
+dna_sampleA <- arrange_fun(dna_eoe_clean[,c(1,6,10)], "NA_A") %>% replace(., is.na(.), 0) 
+dna_sampleB <- arrange_fun(dna_eoe_clean[,c(2,6,10)], "NA_B") %>% replace(., is.na(.), 0) 
+dna_sampleC <- arrange_fun(dna_eoe_clean[,c(3,6,10)], "NA_C") %>% replace(., is.na(.), 0) 
+dna_sampleD <- arrange_fun(dna_eoe_clean[,c(4,6,10)], "NA_D") %>% replace(., is.na(.), 0) 
+dna_sampleE <- arrange_fun(dna_eoe_clean[,c(5,6,10)], "NA_E") %>% replace(., is.na(.), 0) 
 
 
-
-dna_arrange <- left_join(dna_sampleA, dna_sampleB, c("reference_id_TE7_A" = "reference_id_TE7_B")) %>%
-left_join(dna_sampleC, c("reference_id_TE7_A" = "reference_id_TE7_C")) %>%
-left_join(dna_sampleD, c("reference_id_TE7_A" = "reference_id_TE7_D")) %>%
-left_join(dna_sampleE, c("reference_id_TE7_A" = "reference_id_TE7_E"))
+dna_arrange <- left_join(dna_sampleA, dna_sampleB, c("reference_id_NA_A" = "reference_id_NA_B")) %>%
+left_join(dna_sampleC, c("reference_id_NA_A" = "reference_id_NA_C")) %>%
+left_join(dna_sampleD, c("reference_id_NA_A" = "reference_id_NA_D")) %>%
+left_join(dna_sampleE, c("reference_id_NA_A" = "reference_id_NA_E"))
 
 dna_data <- dna_arrange[,-1] %>% as.matrix()
-rownames(dna_data) <- dna_arrange$reference_id_TE7_A
+rownames(dna_data) <- dna_arrange$reference_id_NA_A
 
 
 #rna_arrange
-rna_sampleA <- arrange_fun(rna_eoe_clean[,c(1,6,9)], "TE7_A") %>% replace(., is.na(.), 0) 
-rna_sampleB <- arrange_fun(rna_eoe_clean[,c(2,6,9)], "TE7_B") %>% replace(., is.na(.), 0) 
-rna_sampleC <- arrange_fun(rna_eoe_clean[,c(3,6,9)], "TE7_C") %>% replace(., is.na(.), 0) 
-rna_sampleD <- arrange_fun(rna_eoe_clean[,c(4,6,9)], "TE7_D") %>% replace(., is.na(.), 0) 
-rna_sampleE <- arrange_fun(rna_eoe_clean[,c(5,6,9)], "TE7_E") %>% replace(., is.na(.), 0)
+rna_sampleA <- arrange_fun(rna_eoe_clean[,c(1,6,9)], "NA_A") %>% replace(., is.na(.), 0) 
+rna_sampleB <- arrange_fun(rna_eoe_clean[,c(2,6,9)], "NA_B") %>% replace(., is.na(.), 0) 
+rna_sampleC <- arrange_fun(rna_eoe_clean[,c(3,6,9)], "NA_C") %>% replace(., is.na(.), 0) 
+rna_sampleD <- arrange_fun(rna_eoe_clean[,c(4,6,9)], "NA_D") %>% replace(., is.na(.), 0) 
+rna_sampleE <- arrange_fun(rna_eoe_clean[,c(5,6,9)], "NA_E") %>% replace(., is.na(.), 0)
 
 
-rna_arrange <- left_join(rna_sampleA, rna_sampleB, c("reference_id_TE7_A" = "reference_id_TE7_B")) %>%
-left_join(rna_sampleC, c("reference_id_TE7_A" = "reference_id_TE7_C")) %>%
-left_join(rna_sampleD, c("reference_id_TE7_A" = "reference_id_TE7_D")) %>%
-left_join(rna_sampleE, c("reference_id_TE7_A" = "reference_id_TE7_E"))
+rna_arrange <- left_join(rna_sampleA, rna_sampleB, c("reference_id_NA_A" = "reference_id_NA_B")) %>%
+left_join(rna_sampleC, c("reference_id_NA_A" = "reference_id_NA_C")) %>%
+left_join(rna_sampleD, c("reference_id_NA_A" = "reference_id_NA_D")) %>%
+left_join(rna_sampleE, c("reference_id_NA_A" = "reference_id_NA_E"))
 
 rna_data <- rna_arrange[,-1] %>% as.matrix()
-rownames(rna_data) <- rna_arrange$reference_id_TE7_A
+rownames(rna_data) <- rna_arrange$reference_id_NA_A
 
 
 # check if all column names are the same

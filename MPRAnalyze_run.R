@@ -41,6 +41,6 @@ mutate(as.data.frame(rownames(res.epi))) %>%
 rename(label = "rownames(res.epi)") %>%
 separate(label, c("rsid", "type","allele"), remove = T, sep ="_")
 
-saveRDS(obj, "./results/EoE_TE7_vs_control_obj.RDS")
-write.table(res.epi,"./results/EoE_TE7_vs_control_quantification.csv",sep="\t")
+saveRDS(obj, "./results/_vs_control_obj.RDS")
+write.table(res.epi,"./results/_vs_control_quantification.csv",sep="\t")
 #write.csv(obj.res, "./results/EoE_TE7_vs_control_comparison_scale.csv")

@@ -16,7 +16,7 @@ df_list <- lapply(file_loc, read_xlsx)
 mpra_name <- c("Ctrl","repA", "repB", "repC", "repD","repE")
 names(df_list) <- mpra_name
 df <- bind_rows(df_list, .id = "id")
-df_use <- df %>% select(1,3,8)
+df_use <- df %>% select(1,3,8) #
 names(df_use) <- c("sample","oligo","counts")
 count_table <- spread(df_use,sample, counts)
 
