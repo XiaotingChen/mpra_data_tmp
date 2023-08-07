@@ -54,6 +54,7 @@ def dummy_coding(input_data, verbose=False):
     for idx, _ in enumerate(oligo_set_to_process):
         oligo, dummy_coded_nonref_oligo, dummy_coded_ref_oligo, ref_oligo = _
         data.drop(data[data['reference_id'] == oligo].index, axis=0, inplace=True)
+        data.drop(data[data['reference_id'] == ref_oligo].index, axis=0, inplace=True)
 
     print(data.shape)
     print(processed_data.shape)
@@ -77,15 +78,15 @@ def dummy_coding(input_data, verbose=False):
 # USE CASE
 """
 # load R write.table output file
-dna=pd.read_csv('dna_eoe.csv',sep=" ")
-rna=pd.read_csv('rna_eoe.csv',sep=" ")
+dna=pd.read_csv('./data/R_dataset/dna_eoe.csv',sep=" ")
+rna=pd.read_csv('./data/R_dataset/rna_eoe.csv',sep=" ")
 
 # process
 dummy_coded_dna=dummy_coding(dna)
 dummy_coded_rna=dummy_coding(rna)
 
 # output dummy coded data, to be loaded in R
-dummy_coded_dna.to_csv("dummy_coded_dna_eoe.csv",header=True,index=False,sep=" ")
-dummy_coded_rna.to_csv("dummy_coded_rna_eoe.csv",header=True,index=False,sep=" ")
+dummy_coded_dna.to_csv("./data/R_dataset/dummy_coded_dna_eoe.csv",header=True,index=False,sep=" ")
+dummy_coded_rna.to_csv("./data/R_dataset/dummy_coded_rna_eoe.csv",header=True,index=False,sep=" ")
 
 """
